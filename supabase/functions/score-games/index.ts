@@ -77,6 +77,10 @@ async function run(db: SupabaseClient): Promise<RunSummary> {
       if (error) throw new Error(error.message);
       if (data === true) summary.scored += 1;
       else summary.unchanged += 1;
+      // U10: turn the stored MLB.com highlight links into feed posts.
+      // Idempotent by url, and a failure here never fails the score.
+      const ingest = await db.rpc("scorer_ingest_highlights", { p_game_id: game.game_id });
+      if (ingest.error) console.error(`score-games: highlight ingest for game ${game.game_id} failed`, ingest.error.message);
     } catch (err) {
       // One bad game must not stop the rest. score_game is one transaction
       // per call, so this game is left exactly as it was.
