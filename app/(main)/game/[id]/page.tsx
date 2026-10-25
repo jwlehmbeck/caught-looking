@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 
+import { GameChat } from "@/components/chat/game-chat";
 import { FanSplit } from "@/components/fan-split";
 import { GameHeader } from "@/components/game-header";
 import { HighlightLinks } from "@/components/highlight-links";
@@ -8,6 +9,7 @@ import { GAME_SELECT, PickCardServer, type GameRow } from "@/components/pick-car
 import { ResultCard } from "@/components/result-card";
 import { SanctionBanner } from "@/components/sanction-banner";
 import { TopPredictors, type TopPredictorRow } from "@/components/top-predictors";
+import { getChatWindow } from "@/lib/chat/actions";
 import { buildGameView, type ViewBadge, type ViewGame, type ViewHighlight, type ViewPick } from "@/lib/game/view-state";
 import type { PickSplit } from "@/lib/picks/actions";
 import { createClient } from "@/lib/supabase/server";
@@ -155,6 +157,14 @@ export default async function GamePage({ params }: { params: Promise<{ id: strin
     predictors = ((topRes.data ?? []) as TopPredictorRow[]).slice(0, 3);
   }
 
+  // Chat (U9): live while the game is locked/live/suspended, read-only after
+  // the final. The window RPC says what this viewer may do.
+  const showChat = view.showChatSlot || view.phase === "final";
+  const [chatWindow, roleRes] = showChat
+    ? await Promise.all([getChatWindow(game.id), supabase.rpc("my_role")])
+    : [null, null];
+  const isStaff = roleRes?.data === "mod" || roleRes?.data === "admin";
+
   // The pick card carries its own split bar, so the standalone one only
   // appears where the pick card is not rendered.
   const renderPickCard = view.phase === "open" || view.phase === "locked" || view.phase === "live" || view.phase === "suspended";
@@ -210,15 +220,7 @@ export default async function GamePage({ params }: { params: Promise<{ id: strin
 
       {view.showSplitAndPredictors ? <TopPredictors game={game} rows={predictors} /> : null}
 
-      {view.showChatSlot ? (
-        // TODO(U9): replace this placeholder with the live chat section.
-        <section id="chat" aria-labelledby="chat-heading" style={card}>
-          <h2 id="chat-heading" style={{ fontSize: 22, textTransform: "uppercase" }}>
-            Live chat
-          </h2>
-          <p style={{ fontSize: 14, color: "var(--cl-text-muted)" }}>Live chat arrives here.</p>
-        </section>
-      ) : null}
+      {showChat ? <GameChat gameId={game.id} initialWindow={chatWindow} viewerId={userId} isStaff={isStaff} /> : null}
 
       {view.showHighlights ? <HighlightLinks highlights={game.highlights} /> : null}
 
