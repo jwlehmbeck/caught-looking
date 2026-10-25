@@ -17,3 +17,5 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - The service-role key, AWS and OpenAI keys are server-only. Never give a secret a `NEXT_PUBLIC_` prefix.
 - Phone-first (390 px). Touch targets at least 44 px, text contrast at least 4.5:1, team identity never by color alone.
 - Every feature-bearing change ships with tests: Vitest for rules, pgTAP for database policies, Playwright for screens.
+- Every new table ends with `select private.lock_down('public.<table>');` and, if members may read it, `grant select ... to authenticated;`. New `private` functions get `revoke all ... from public, anon, authenticated` unless a policy needs them.
+- pgTAP tests use the `tests.*` helpers (`create_user`, `authenticate_as`, `create_game`). Each file is `begin; ... rollback;`.
