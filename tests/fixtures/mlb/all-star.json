@@ -1,0 +1,14 @@
+{
+  "gamePk": 745010,
+  "gameType": "A",
+  "season": "2026",
+  "gameDate": "2026-07-14T00:00:00Z",
+  "officialDate": "2026-07-13",
+  "status": { "abstractGameState": "Preview", "codedGameState": "S", "detailedState": "Scheduled", "statusCode": "S" },
+  "teams": {
+    "away": { "team": { "id": 159, "name": "American League All-Stars", "abbreviation": "AL" } },
+    "home": { "team": { "id": 160, "name": "National League All-Stars", "abbreviation": "NL" } }
+  },
+  "doubleHeader": "N",
+  "gameNumber": 1
+}

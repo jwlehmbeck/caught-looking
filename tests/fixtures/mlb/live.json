@@ -1,0 +1,25 @@
+{
+  "gamePk": 745002,
+  "gameType": "R",
+  "season": "2026",
+  "gameDate": "2026-04-15T23:10:00Z",
+  "officialDate": "2026-04-15",
+  "status": {
+    "abstractGameState": "Live",
+    "codedGameState": "I",
+    "detailedState": "In Progress",
+    "statusCode": "I",
+    "startTimeTBD": false
+  },
+  "teams": {
+    "away": { "score": 2, "team": { "id": 147, "name": "New York Yankees", "abbreviation": "NYY" } },
+    "home": { "score": 3, "team": { "id": 111, "name": "Boston Red Sox", "abbreviation": "BOS" } }
+  },
+  "linescore": {
+    "currentInning": 6,
+    "inningState": "Top",
+    "teams": { "home": { "runs": 3, "hits": 7, "errors": 0 }, "away": { "runs": 2, "hits": 5, "errors": 1 } }
+  },
+  "doubleHeader": "N",
+  "gameNumber": 1
+}

@@ -1,0 +1,23 @@
+{
+  "gamePk": 745006,
+  "gameType": "R",
+  "season": "2026",
+  "gameDate": "2026-04-15T23:10:00Z",
+  "officialDate": "2026-04-15",
+  "status": {
+    "abstractGameState": "Live",
+    "codedGameState": "U",
+    "detailedState": "Suspended: Rain",
+    "statusCode": "UR",
+    "startTimeTBD": false,
+    "reason": "Rain"
+  },
+  "teams": {
+    "away": { "score": 1, "team": { "id": 138, "name": "St. Louis Cardinals", "abbreviation": "STL" } },
+    "home": { "score": 1, "team": { "id": 134, "name": "Pittsburgh Pirates", "abbreviation": "PIT" } }
+  },
+  "linescore": { "currentInning": 5, "teams": { "home": { "runs": 1 }, "away": { "runs": 1 } } },
+  "resumeDate": "2026-04-18",
+  "doubleHeader": "N",
+  "gameNumber": 1
+}

@@ -1,0 +1,63 @@
+{
+  "gamePk": 745003,
+  "gameType": "R",
+  "season": "2026",
+  "gameDate": "2026-04-15T23:10:00Z",
+  "officialDate": "2026-04-15",
+  "status": {
+    "abstractGameState": "Final",
+    "codedGameState": "F",
+    "detailedState": "Final",
+    "statusCode": "F",
+    "startTimeTBD": false
+  },
+  "teams": {
+    "away": { "score": 4, "isWinner": false, "team": { "id": 133, "name": "Athletics", "abbreviation": "ATH" } },
+    "home": { "score": 6, "isWinner": true, "team": { "id": 136, "name": "Seattle Mariners", "abbreviation": "SEA" } }
+  },
+  "linescore": {
+    "currentInning": 9,
+    "teams": { "home": { "runs": 6 }, "away": { "runs": 4 } }
+  },
+  "doubleHeader": "N",
+  "gameNumber": 1,
+  "content": {
+    "highlights": {
+      "highlights": {
+        "items": [
+          {
+            "type": "video",
+            "title": "Mariners walk it off in the 9th",
+            "headline": "Mariners walk it off in the 9th",
+            "duration": "00:00:39",
+            "slug": "mariners-walk-it-off-in-the-9th",
+            "playbacks": [
+              { "name": "mp4Avc", "url": "https://mlb-cuts-diamond.mlb.com/FORGE/2026/2026-04/15/abc_1280x720_59_4000K.mp4" },
+              { "name": "hlsCloud", "url": "https://mlb-cuts-diamond.mlb.com/FORGE/2026/2026-04/15/abc/master.m3u8" }
+            ]
+          },
+          {
+            "type": "video",
+            "title": "Condensed Game: ATH@SEA 4/15/26",
+            "duration": "00:08:12",
+            "slug": "condensed-game-ath-sea-4-15-26",
+            "playbacks": [
+              { "name": "mp4Avc", "url": "https://mlb-cuts-diamond.mlb.com/FORGE/2026/2026-04/15/def.mp4" }
+            ]
+          },
+          {
+            "type": "video",
+            "title": "Clip with only a media url",
+            "url": "https://mlb-cuts-diamond.mlb.com/FORGE/2026/2026-04/15/ghi.mp4",
+            "playbacks": []
+          },
+          {
+            "type": "article",
+            "title": "Game recap",
+            "slug": "not-a-video"
+          }
+        ]
+      }
+    }
+  }
+}
