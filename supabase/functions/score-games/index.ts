@@ -86,6 +86,16 @@ async function run(db: SupabaseClient): Promise<RunSummary> {
     }
   }
 
+  // Leaderboards (U6) are materialized views refreshed once per run, after
+  // every game has been scored, not once per game.
+  if (summary.scored > 0 || summary.voided > 0) {
+    const refresh = await db.rpc("scorer_refresh_leaderboards");
+    if (refresh.error) {
+      console.error("score-games: leaderboard refresh failed", refresh.error.message);
+      summary.failed.push({ gameId: 0, error: `refresh_leaderboards: ${refresh.error.message}` });
+    }
+  }
+
   return summary;
 }
 
