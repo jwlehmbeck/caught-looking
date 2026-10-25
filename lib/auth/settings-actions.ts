@@ -25,7 +25,7 @@ export async function regenerateRecoveryCode(): Promise<RegenerateState> {
 
   const recoveryCode = generateRecoveryCode();
   const admin = createAdminClient();
-  const { error } = await admin.rpc("set_recovery_code", {
+  const { error } = await admin.rpc("auth_set_recovery_code", {
     p_user_id: userId,
     p_code_hash: await hashRecoveryCode(recoveryCode),
   });

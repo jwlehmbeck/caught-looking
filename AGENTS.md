@@ -19,3 +19,4 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Every feature-bearing change ships with tests: Vitest for rules, pgTAP for database policies, Playwright for screens.
 - Every new table ends with `select private.lock_down('public.<table>');` and, if members may read it, `grant select ... to authenticated;`. New `private` functions get `revoke all ... from public, anon, authenticated` unless a policy needs them.
 - pgTAP tests use the `tests.*` helpers (`create_user`, `authenticate_as`, `create_game`). Each file is `begin; ... rollback;`.
+- The API only exposes the `public` schema. Anything server code calls through `.rpc()` must be a `public.*` function; service-only ones check `private.is_service()` and are revoked from client roles (see `20261025130310_u3_public_wrappers.sql`).

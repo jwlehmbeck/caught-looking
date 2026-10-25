@@ -77,7 +77,7 @@ export async function submitInvite(_prev: FormState, formData: FormData): Promis
   if (!/^[A-Z0-9-]{4,20}$/.test(code)) return { error: "That invite code isn't valid." };
 
   const admin = createAdminClient();
-  const { data, error } = await admin.rpc("redeem_invite_code", { p_code: code, p_consume: false });
+  const { data, error } = await admin.rpc("auth_redeem_invite_code", { p_code: code, p_consume: false });
   if (error || data !== true) return { error: "That invite code isn't valid." };
 
   await writeSignupProgress({ ...progress, invite: code });
@@ -121,7 +121,7 @@ export async function submitUsername(_prev: FormState, formData: FormData): Prom
   if (!check.ok) return { error: USERNAME_TAKEN };
 
   const admin = createAdminClient();
-  const { data: available, error } = await admin.rpc("username_available", { p_normalized: check.normalized });
+  const { data: available, error } = await admin.rpc("auth_username_available", { p_normalized: check.normalized });
   if (error) return { error: TRY_AGAIN };
   if (available !== true) return { error: USERNAME_TAKEN };
 
@@ -201,7 +201,7 @@ export async function createAccount(
 
   // Count the invite use now. A later failure wastes one use, which is the
   // safer direction: nobody gets an account without an invite.
-  const inviteRes = await admin.rpc("redeem_invite_code", {
+  const inviteRes = await admin.rpc("auth_redeem_invite_code", {
     p_code: publicOpen ? (progress.invite ?? null) : progress.invite,
     p_consume: true,
   });
@@ -222,7 +222,7 @@ export async function createAccount(
     return fail(TRY_AGAIN);
   }
 
-  const profileRes = await admin.rpc("signup_create_profile", {
+  const profileRes = await admin.rpc("auth_signup_create_profile", {
     p_user_id: userId,
     p_username: progress.username,
     p_normalized: check.normalized,
@@ -240,7 +240,7 @@ export async function createAccount(
   }
 
   const recoveryCode = generateRecoveryCode();
-  const codeRes = await admin.rpc("set_recovery_code", {
+  const codeRes = await admin.rpc("auth_set_recovery_code", {
     p_user_id: userId,
     p_code_hash: await hashRecoveryCode(recoveryCode),
   });

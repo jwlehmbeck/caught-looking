@@ -49,7 +49,7 @@ export async function login(_prev: FormState, formData: FormData): Promise<FormS
   }
 
   const admin = createAdminClient();
-  const { data, error } = await admin.rpc("lookup_login", {
+  const { data, error } = await admin.rpc("auth_lookup_login", {
     p_normalized_username: normalizeUsername(username),
   });
   const row = Array.isArray(data) ? (data[0] as { user_id: string } | undefined) : undefined;

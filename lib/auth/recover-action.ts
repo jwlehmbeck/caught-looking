@@ -56,11 +56,11 @@ export async function recoverAccount(_prev: RecoverState, formData: FormData): P
 
   const admin = createAdminClient();
 
-  const ipRes = await admin.rpc("recovery_ip_allowed", { p_ip_hash: await clientIpHash() });
+  const ipRes = await admin.rpc("auth_recovery_ip_allowed", { p_ip_hash: await clientIpHash() });
   if (ipRes.error) return fail("Something went wrong. Try again.");
   if (ipRes.data !== true) return fail(TOO_MANY);
 
-  const { data, error } = await admin.rpc("get_recovery_hash", {
+  const { data, error } = await admin.rpc("auth_get_recovery_hash", {
     p_normalized_username: normalizeUsername(username),
   });
   const row = Array.isArray(data) ? (data[0] as RecoveryRow | undefined) : undefined;
@@ -72,7 +72,7 @@ export async function recoverAccount(_prev: RecoverState, formData: FormData): P
   const ok = row.code_hash !== null && !row.locked && (await compareRecoveryCode(code, row.code_hash));
   if (!ok && row.code_hash === null) await compareRecoveryCode(code, dummyRecoveryHash());
 
-  const recorded = await admin.rpc("record_recovery_result", { p_user_id: row.user_id, p_ok: ok });
+  const recorded = await admin.rpc("auth_record_recovery_result", { p_user_id: row.user_id, p_ok: ok });
   if (recorded.error) return fail("Something went wrong. Try again.");
   // A correct code during a lock is still refused by the database.
   if (!ok || recorded.data === true) return fail(NO_MATCH);
@@ -98,7 +98,7 @@ export async function recoverAccount(_prev: RecoverState, formData: FormData): P
   if (revoked.error) console.error("session revoke failed", revoked.error.message);
 
   const recoveryCode = generateRecoveryCode();
-  const stored = await admin.rpc("set_recovery_code", {
+  const stored = await admin.rpc("auth_set_recovery_code", {
     p_user_id: row.user_id,
     p_code_hash: await hashRecoveryCode(recoveryCode),
   });
