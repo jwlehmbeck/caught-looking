@@ -103,7 +103,12 @@ export default async function PicksPage({ searchParams }: { searchParams: Promis
         <article key={g.id} style={{ display: "grid", gap: 8 }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 12 }}>
             <h2 style={{ fontSize: 18 }}>
-              {g.away!.abbreviation} at {g.home!.abbreviation}
+              <Link
+                href={`/game/${g.id}`}
+                style={{ color: "inherit", display: "inline-flex", alignItems: "center", minHeight: "var(--cl-tap)" }}
+              >
+                {g.away!.abbreviation} at {g.home!.abbreviation} →
+              </Link>
             </h2>
             <span style={{ fontSize: 13, color: "var(--cl-text-muted)" }}>
               {g.app_state === "open" || g.app_state === "locked" ? startTime(g.game_date) : g.app_state}
