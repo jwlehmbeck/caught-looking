@@ -1,0 +1,42 @@
+/**
+ * Slurs, in plain lowercase spelling, matched after normalization. This list
+ * exists so the app rejects them locally even when the moderation API is
+ * down. Keep it to real slurs; the normalizer handles disguised spellings.
+ */
+export const SLURS: readonly string[] = [
+  "nigger",
+  "nigga",
+  "niga",
+  "negro",
+  "faggot",
+  "fag",
+  "fags",
+  "dyke",
+  "tranny",
+  "retard",
+  "retarded",
+  "spic",
+  "spick",
+  "wetback",
+  "beaner",
+  "chink",
+  "gook",
+  "jap",
+  "kike",
+  "kyke",
+  "raghead",
+  "towelhead",
+  "sandnigger",
+  "coon",
+  "darkie",
+  "paki",
+  "wop",
+  "dago",
+  "kraut",
+  "redskin",
+  "injun",
+  "squaw",
+  "shemale",
+  "homo",
+  "lesbo",
+];
