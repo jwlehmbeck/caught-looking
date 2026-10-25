@@ -1,0 +1,57 @@
+{
+  "dates": [
+    {
+      "date": "2026-04-15",
+      "games": [
+        {
+          "gamePk": 745011,
+          "gameType": "R",
+          "season": "2026",
+          "gameDate": "2026-04-15T23:10:00Z",
+          "officialDate": "2026-04-15",
+          "status": { "abstractGameState": "Final", "codedGameState": "D", "detailedState": "Postponed", "statusCode": "DR", "reason": "Rain" },
+          "teams": {
+            "away": { "team": { "id": 114, "name": "Cleveland Guardians", "abbreviation": "CLE" } },
+            "home": { "team": { "id": 116, "name": "Detroit Tigers", "abbreviation": "DET" } }
+          },
+          "doubleHeader": "N",
+          "gameNumber": 1
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "games": [
+        {
+          "gamePk": 745011,
+          "gameType": "R",
+          "season": "2026",
+          "gameDate": "2026-04-16T17:10:00Z",
+          "officialDate": "2026-04-16",
+          "status": { "abstractGameState": "Preview", "codedGameState": "S", "detailedState": "Scheduled", "statusCode": "S" },
+          "teams": {
+            "away": { "team": { "id": 114, "name": "Cleveland Guardians", "abbreviation": "CLE" } },
+            "home": { "team": { "id": 116, "name": "Detroit Tigers", "abbreviation": "DET" } }
+          },
+          "rescheduledFrom": "2026-04-15T23:10:00Z",
+          "doubleHeader": "N",
+          "gameNumber": 1
+        },
+        {
+          "gamePk": 745012,
+          "gameType": "R",
+          "season": "2026",
+          "gameDate": "2026-04-16T23:10:00Z",
+          "officialDate": "2026-04-16",
+          "status": { "abstractGameState": "Preview", "codedGameState": "S", "detailedState": "Scheduled", "statusCode": "S" },
+          "teams": {
+            "away": { "team": { "id": 114, "name": "Cleveland Guardians", "abbreviation": "CLE" } },
+            "home": { "team": { "id": 116, "name": "Detroit Tigers", "abbreviation": "DET" } }
+          },
+          "doubleHeader": "N",
+          "gameNumber": 1
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "gamePk": 745004,
+  "gameType": "R",
+  "season": "2026",
+  "gameDate": "2026-04-15T23:10:00Z",
+  "officialDate": "2026-04-15",
+  "status": {
+    "abstractGameState": "Final",
+    "codedGameState": "F",
+    "detailedState": "Final: Tied",
+    "statusCode": "FT",
+    "startTimeTBD": false
+  },
+  "teams": {
+    "away": { "score": 5, "team": { "id": 112, "name": "Chicago Cubs", "abbreviation": "CHC" } },
+    "home": { "score": 5, "team": { "id": 158, "name": "Milwaukee Brewers", "abbreviation": "MIL" } }
+  },
+  "doubleHeader": "N",
+  "gameNumber": 1
+}

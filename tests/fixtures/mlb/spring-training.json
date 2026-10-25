@@ -1,0 +1,14 @@
+{
+  "gamePk": 745009,
+  "gameType": "S",
+  "season": "2026",
+  "gameDate": "2026-03-10T20:05:00Z",
+  "officialDate": "2026-03-10",
+  "status": { "abstractGameState": "Preview", "codedGameState": "S", "detailedState": "Scheduled", "statusCode": "S" },
+  "teams": {
+    "away": { "team": { "id": 118, "name": "Kansas City Royals", "abbreviation": "KC" } },
+    "home": { "team": { "id": 140, "name": "Texas Rangers", "abbreviation": "TEX" } }
+  },
+  "doubleHeader": "N",
+  "gameNumber": 1
+}
