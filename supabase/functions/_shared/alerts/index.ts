@@ -14,6 +14,7 @@ export type AlertKind =
   | "scorer_failure"
   | "upload_auto_rejected"
   | "scan_timeout"
+  | "csam_quarantine"
   | "urgent_report"
   | "other";
 
