@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
+import { PolicyLinks } from "@/components/policy-page";
 import { SanctionBanner } from "@/components/sanction-banner";
 import { createClient } from "@/lib/supabase/server";
 
@@ -70,6 +71,10 @@ export default async function SettingsPage() {
       <RecoveryCodeSection />
       <LogoutSection />
       <DeleteAccountSection />
+
+      <footer style={{ display: "grid", gap: 4 }}>
+        <PolicyLinks label="Rules and policies" />
+      </footer>
     </main>
   );
 }

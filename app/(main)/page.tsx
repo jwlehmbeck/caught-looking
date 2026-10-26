@@ -7,6 +7,7 @@ import { FeedTabs } from "@/components/feed/feed-tabs";
 import { GamesStrip } from "@/components/games-strip/games-strip";
 import { HitRateChip } from "@/components/hit-rate-chip";
 import { GAME_SELECT, PickCardServer, type GameRow } from "@/components/pick-card/pick-card-server";
+import { PolicyLinks } from "@/components/policy-page";
 import { PollList } from "@/components/poll-list";
 import { SanctionBanner } from "@/components/sanction-banner";
 import { loadFeed } from "@/lib/feed/actions";
@@ -235,8 +236,9 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
       ) : null}
       <FeedList key={`${tab}-${feedTab}`} tab={feedTab} initial={feed} emptyMessage={EMPTY[feedTab]} />
 
-      <footer style={{ fontSize: 12, color: "var(--cl-text-muted)", textAlign: "center", paddingTop: 8 }}>
-        Not affiliated with MLB or any club.
+      <footer style={{ fontSize: 12, color: "var(--cl-text-muted)", textAlign: "center", paddingTop: 8, display: "grid", justifyItems: "center", gap: 4 }}>
+        <PolicyLinks />
+        <p>Not affiliated with MLB or any club.</p>
       </footer>
     </main>
   );
