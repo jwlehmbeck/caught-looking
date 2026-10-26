@@ -15,7 +15,7 @@ const TABS: { id: FeedTab; label: string }[] = [
 ];
 
 /** Hot / New / My Team pills. Plain links, so the tab survives a reload. */
-export function FeedTabs({ active, basePath = "/feed" }: FeedTabsProps) {
+export function FeedTabs({ active, basePath = "/" }: FeedTabsProps) {
   return (
     <nav aria-label="Feed" style={{ display: "flex", gap: 8 }}>
       {TABS.map((t) => {

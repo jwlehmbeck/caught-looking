@@ -5,6 +5,7 @@ import { GameChat } from "@/components/chat/game-chat";
 import { FanSplit } from "@/components/fan-split";
 import { GameHeader } from "@/components/game-header";
 import { HighlightLinks } from "@/components/highlight-links";
+import { PollList } from "@/components/poll-list";
 import { GAME_SELECT, PickCardServer, type GameRow } from "@/components/pick-card/pick-card-server";
 import { ResultCard } from "@/components/result-card";
 import { SanctionBanner } from "@/components/sanction-banner";
@@ -209,6 +210,8 @@ export default async function GamePage({ params }: { params: Promise<{ id: strin
       ) : null}
 
       {renderPickCard ? <PickCardServer game={row} /> : null}
+
+      <PollList gameId={game.id} />
 
       {view.showResult && view.result ? (
         <ResultCard result={view.result} hitRateLine={view.hitRateLine} badges={view.badges} />
