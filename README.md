@@ -36,4 +36,26 @@ If Playwright hasn't downloaded a browser yet: `npx playwright install chromium`
 - `supabase/migrations/`, `supabase/tests/` — schema and pgTAP tests
 - `tests/unit/`, `tests/e2e/`, `tests/fixtures/mlb/` — Vitest, Playwright, recorded MLB data
 
+## Before launch
+
+Caught Looking runs invite-only until every gate passes. `public_signup_open`
+stays `false` until then.
+
+- `docs/launch-checklist.md` — every launch gate (legal, data, safety,
+  infrastructure, product) with an adult-admin sign-off line.
+- `docs/ops/runbook.md` — deploying, creating the first admin, invite codes,
+  alerts and secret rotation.
+
+## Policies
+
+Public pages: `/rules`, `/terms`, `/privacy`, `/child-safety`, `/contact`
+(terms and privacy are drafts pending legal review).
+
+- `docs/policies/mod-handbook.md` — roles, response targets, sanctions, appeals
+- `docs/policies/csam-procedure.md` — quarantine, ban, NCMEC report, preservation
+- `docs/policies/upload-rules.md` — fan edit rules and the review flow
+- `docs/policies/data-retention.md` — what we keep, how long, how it's deleted
+- `docs/policies/security-program.md` — secrets inventory, rotation, access, annual review
+- `docs/policies/dmca.md` — designated agent, takedowns, counter-notices, repeat infringers
+
 Not affiliated with MLB or any club.

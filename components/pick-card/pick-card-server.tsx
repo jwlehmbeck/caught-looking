@@ -55,7 +55,17 @@ export function toPickCardGame(row: GameRow): PickCardGame | null {
  * renders the client pick card. Pass either `gameId` or an already-loaded
  * `game` row (with the team joins from GAME_SELECT) to save a query.
  */
-export async function PickCardServer({ gameId, game: preloaded }: { gameId?: number; game?: GameRow }) {
+export async function PickCardServer({
+  gameId,
+  game: preloaded,
+  openTitle,
+  emphasis,
+}: {
+  gameId?: number;
+  game?: GameRow;
+  openTitle?: string;
+  emphasis?: boolean;
+}) {
   const supabase = await createClient();
   const { data: claims } = await supabase.auth.getClaims();
   const userId = claims?.claims?.sub;
@@ -83,5 +93,7 @@ export async function PickCardServer({ gameId, game: preloaded }: { gameId?: num
     ? { home: splitRows[0].home_count, away: splitRows[0].away_count, total: splitRows[0].total }
     : null;
 
-  return <PickCard game={game} initialPick={initialPick} initialSplit={initialSplit} />;
+  return (
+    <PickCard game={game} initialPick={initialPick} initialSplit={initialSplit} openTitle={openTitle} emphasis={emphasis} />
+  );
 }

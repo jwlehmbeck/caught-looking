@@ -38,6 +38,10 @@ export interface PickCardProps {
   initialSplit: PickSplit | null;
   /** Injected for tests; defaults to Date.now. */
   now?: () => number;
+  /** Heading while picks are open (default "Who wins?"). The home screen uses "Make your pick". */
+  openTitle?: string;
+  /** Outline the card in the accent (home screen). */
+  emphasis?: boolean;
 }
 
 type Phase =
@@ -202,7 +206,7 @@ function scoreLine(game: PickCardGame): string {
  * viewer has picked, and the result after the final. The database owns the
  * lock; this card only reflects it.
  */
-export function PickCard({ game, initialPick, initialSplit, now = Date.now }: PickCardProps) {
+export function PickCard({ game, initialPick, initialSplit, now = Date.now, openTitle, emphasis = false }: PickCardProps) {
   const [pick, setPick] = useState<ViewerPick | null>(initialPick);
   const [split, setSplit] = useState<PickSplit | null>(initialSplit);
   const [changing, setChanging] = useState(initialPick === null);
@@ -259,13 +263,15 @@ export function PickCard({ game, initialPick, initialSplit, now = Date.now }: Pi
 
   const showButtons = phase.kind === "open" || phase.kind === "saving" || phase.kind === "saveError";
 
-  let heading = "Who wins?";
+  let heading = openTitle ?? "Who wins?";
   if (phase.kind === "result") heading = pick && pick.status === "correct" ? "You called it" : pick && pick.status === "wrong" ? "Caught looking" : "Final";
   if (phase.kind === "void") heading = "No result";
   if (phase.kind === "awaiting") heading = "Picks are locked";
 
   return (
-    <section style={cardStyle} aria-label={`Pick: ${game.away.abbreviation} at ${game.home.abbreviation}`}>
+    <section
+      style={emphasis ? { ...cardStyle, border: "2px solid var(--cl-accent)" } : cardStyle}
+      aria-label={`Pick: ${game.away.abbreviation} at ${game.home.abbreviation}`}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 12 }}>
         <h2 style={{ fontSize: 22, textTransform: "uppercase" }}>{heading}</h2>
         {phase.kind === "open" || phase.kind === "saving" || phase.kind === "saveError" ? (
