@@ -114,3 +114,12 @@ Weekly: glance at Supabase usage (storage, egress, Realtime connections) and
 
 For the Supabase service-role key: rotate in the dashboard (API keys), update
 the host env, redeploy. Functions pick up the new key automatically.
+
+## Production project (set up 2026-10-26)
+
+- Supabase project: **CaughtLooking** (`ojqjjsmsjpkbfutvasit`, us-west-1), org Innovation Hub (free plan).
+- Database: all migrations except `test_helpers` applied. pg_cron and pg_net enabled.
+- Vault secrets: `poll_games_url`, `score_games_url`, `ingest_news_url`, `scan_sweep_url`, `scan_upload_url`, `internal_function_secret` (random, generated in the database).
+- Cron jobs: `poll-games` (every 2 min), `score-games` (odd minutes), `ingest-news` (hourly at :17). Upload scanning crons and the storage webhook are not scheduled until AWS keys exist.
+- Edge Functions deploy from GitHub Actions (`.github/workflows/deploy-functions.yml`) using the repo secrets `SUPABASE_ACCESS_TOKEN` and `SUPABASE_PROJECT_REF`.
+- Edge Function secret `INTERNAL_FUNCTION_SECRET` must equal the Vault secret. To read it: SQL editor → `select decrypted_secret from vault.decrypted_secrets where name = 'internal_function_secret';`
