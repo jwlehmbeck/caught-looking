@@ -7,6 +7,7 @@ import { REPORT_CATEGORIES } from "@/lib/safety/categories";
 
 import { queueAction } from "./actions";
 import { InviteGenerator } from "./invite-generator";
+import { UploadQueue } from "./upload-queue";
 
 export const metadata: Metadata = { title: "Mod console" };
 export const dynamic = "force-dynamic";
@@ -74,7 +75,7 @@ export default async function ModPage({
   if (!isStaff) redirect("/");
 
   const { tab } = await searchParams;
-  const activeTab = tab === "invites" && isAdmin ? "invites" : "reports";
+  const activeTab = tab === "invites" && isAdmin ? "invites" : tab === "uploads" && isAdmin ? "uploads" : "reports";
 
   let rows: QueueRow[] = [];
   let queueError: string | null = null;
@@ -103,6 +104,11 @@ export default async function ModPage({
           Reports{rows.length ? ` (${rows.length})` : ""}
         </TabLink>
         {isAdmin ? (
+          <TabLink href="/mod?tab=uploads" active={activeTab === "uploads"}>
+            Uploads
+          </TabLink>
+        ) : null}
+        {isAdmin ? (
           <TabLink href="/mod?tab=invites" active={activeTab === "invites"}>
             Invites
           </TabLink>
@@ -111,6 +117,8 @@ export default async function ModPage({
 
       {activeTab === "invites" ? (
         <InviteGenerator />
+      ) : activeTab === "uploads" ? (
+        <UploadQueue />
       ) : (
         <section style={{ display: "grid", gap: 16 }}>
           {queueError ? <p role="alert">{queueError}</p> : null}

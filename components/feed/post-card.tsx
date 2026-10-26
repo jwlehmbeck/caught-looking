@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { ReportButton } from "@/components/report-button";
+import { FanEditPlayer } from "@/components/feed/fan-edit-player";
 import { TimeAgo } from "@/components/feed/time-ago";
 import { VoteButton } from "@/components/feed/vote-button";
 import type { FeedPost } from "@/lib/feed/types";
@@ -37,8 +38,8 @@ interface PostCardProps {
 /**
  * One feed post: kind badge, title, byline, the outbound link (MLB.com or
  * YouTube, opens in a new tab, nothing plays here), vote button, comment
- * count and the report flag. Fan edits (U11) render through the same card
- * once they have a player; for now they show their thumbnail slot.
+ * count and the report flag. Fan edits render the tap-to-play player
+ * (U11): a poster, a signed URL on tap, never autoplay.
  */
 export function PostCard({ post, detail = false }: PostCardProps) {
   const destination = linkDestination(post.url);
@@ -128,24 +129,7 @@ export function PostCard({ post, detail = false }: PostCardProps) {
           </span>
         </a>
       ) : post.kind === "fan_edit" ? (
-        <div
-          role="img"
-          aria-label="Fan edit video"
-          style={{
-            aspectRatio: "16 / 9",
-            borderRadius: "var(--cl-radius-sm)",
-            background: "var(--cl-bg-raised)",
-            border: "1px solid var(--cl-border)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            color: "var(--cl-text-muted)",
-            fontSize: 13,
-          }}
-        >
-          {/* U11 replaces this slot with the tap-to-play player (no autoplay). */}
-          Video{duration ? ` · ${duration}` : ""}
-        </div>
+        <FanEditPlayer postId={post.id} thumbnailPath={post.thumbnailPath} durationLabel={duration} title={post.title} />
       ) : null}
 
       <footer style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>

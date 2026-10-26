@@ -46,9 +46,14 @@ export default async function OwnProfilePage() {
         <ProfileView
           profile={profile}
           actions={
-            <Link href="/profile/settings" style={linkButton}>
-              Settings
-            </Link>
+            <>
+              <Link href="/profile/uploads" style={linkButton}>
+                My uploads
+              </Link>
+              <Link href="/profile/settings" style={linkButton}>
+                Settings
+              </Link>
+            </>
           }
         />
       ) : (
